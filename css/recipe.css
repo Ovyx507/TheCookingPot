@@ -1,0 +1,31 @@
+#add-recipe-form{
+width:50%;
+	}
+h1 {
+	color:green;
+}
+div.recipe {
+	margin-top: 20px;
+	width:75%;
+}
+div.recipe-headerfooter {
+	display:inline-block;
+	padding-left: 20px;
+	color:black;
+}
+div.recipe-description {
+}
+div.recipe-buttons {
+	display:block;
+}
+.bg-grey {
+	background-color: #ffffff ;
+	width:100%;
+}
+.bg-bluegrey {
+	background-color: #f0f0f5 !important ;
+	width:100%;
+}
+.clear{
+    clear:both;
+}

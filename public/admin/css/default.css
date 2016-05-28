@@ -1,0 +1,56 @@
+body{background:silver;}
+
+.erori{color:red;font-style:Tahoma;}
+
+.clearfix:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+h1{font-family:Tahoma;font-weight:100;}
+
+a{color:white;padding:10px;text-decoration:none;}
+span{color:red;font-size:20px;font-family:Tahoma;}
+p{color:white;font-size:15px;font-family:Tahoma;}
+h2{font-family:Tahoma;font-size:15px;margin-left:10px;text-decoration:underline;}
+
+.st{color:red;}
+
+.LS-logout{position:absolute;top:10px;right:10px;font-family:Tahoma;font-size:12px;}
+.LS-logout:hover{text-decoration:underline;}
+
+
+#header{padding:20px;background:#1A4377;border-bottom:6px solid #2D598E;}
+#content{background:#fff;overflow:hidden;margin:0;padding:0;}
+#footer{background:#1A4377;border-top:6px solid #2D598E;padding:20px;}
+
+
+.loginAdmin{width:300px;height:200px;}
+.loginAdmin label{float:left;clear:both;font-family:Tahoma;font-size:16px;}
+.loginAdmin input{float:right;margin-bottom:10px;margin-right:50px;border:1px solid rgba(0,0,0,0.3);padding:3px;}
+.loginAdmin input[type=submit]{clear:both;border:1px solid black;color:white;background:#1A4377;font-family:Tahoma;}
+
+
+
+.formularStandard input[type=text]{border:1px solid black;padding:5px;width:200px;}
+.formularStandard input[type=password]{border:1px solid black;padding:5px;width:200px;}
+.formularStandard label{font-family:Tahoma;font-weight:200;font-size:13px;}
+.formularStandard input[type=submit]{margin-top:10px;font-family:Tahoma;font-weight:bold;border:1px solid black;cursor:pointer;}
+
+
+
+.LS-meniu{overflow:hidden;background:#2D598E;}
+.LS-meniu ul{list-style:none;margin:0;padding:0;margin-left:50px;}
+.LS-meniu ul li{float:left;padding:5px;background:#2D598E;font-family:Tahoma;font-size:13px;font-weight:bold;color:white;}
+.LS-meniu ul li:hover{background:#4776AA;cursor:pointer;}
+
+
+.LS-useriDiv{margin-top:10px;margin-left:10px;}
+.tabelStandard tr{width:20px;}
+.tabelStandard td{border-spacing:0;}
+.tabelStandard th{background:#555555;color:white;font-weight:100;font-family:Verdana;}
+.tabelStandard tr,th{margin:0;border:none;}
+.tabelStandard .odd{background:#F1F1F1;}
