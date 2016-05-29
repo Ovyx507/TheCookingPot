@@ -6,7 +6,7 @@ display:list-item;
 </br>
 <div class="row">
 <div id="titlu" class="text-center">
-<h1>Home Pot</h1>
+<h1>Dashboard</h1>
 </div>
 </div>
 <hr>
