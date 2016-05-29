@@ -33,6 +33,9 @@ h1,h3{
     color: rgba(0, 0, 0, 0.5);
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4);
 }
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
 </style>
 <div class="container">
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

@@ -51,7 +51,7 @@
 						if($_SESSION['loggedin'] == 1)
 						{
 							?>	<li>
-									<img class="logo" src="<? echo APP_URL_PRE;?>uploads/useri/profilepic/micro/<? echo $_SESSION['profilepic'] != null ? $_SESSION['profilepic'] : 'default.jpg'; ?>" height="42" width="42">
+									<img class="logo img-circle" src="<? echo APP_URL_PRE;?>uploads/useri/profilepic/micro/<? echo $_SESSION['profilepic'] != null ? $_SESSION['profilepic'] : 'default.jpg'; ?>" height="42" width="42">
 								</li>
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['username'] != null ? $_SESSION['username'] : 'ceidintai'?> <span class="caret"></span></a>
