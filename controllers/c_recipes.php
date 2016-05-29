@@ -51,23 +51,44 @@ class C_recipes extends Controller{
 
 	public function like($id)
 	{
-		if(!in_array($id, unserialize($_COOKIE['likes'])) && $id)
+		if($_COOKIE['likes'])
 		{
-			$nr = $this->m_recipes->select_one('nr_likes', 'id = '.$id);
-			$nr++;
-			$this->m_recipes->edit_row(array('nr_likes' => $nr, 'id' => $id));
-
-			$id_user = $this->m_recipes->select_one('id_user', 'id = '.$id);
-			$score = $this->m_useri->select_one('score', 'id = '.$id_user);
-			$score++;
-			$this->m_useri->edit_row(array('score' => $score, 'id' => $id_user));
-
-			$likes = $_COOKIE['likes'] ? unserialize($_COOKIE['likes']) : array($id);
-			if(!in_array($id, unserialize($_COOKIE['likes'])))
+			if(!in_array($id, unserialize($_COOKIE['likes'])) && $id)
 			{
-				array_push($likes, $id);
+				$nr = $this->m_recipes->select_one('nr_likes', 'id = '.$id);
+				$nr++;
+				$this->m_recipes->edit_row(array('nr_likes' => $nr, 'id' => $id));
+
+				$id_user = $this->m_recipes->select_one('id_user', 'id = '.$id);
+				$score = $this->m_useri->select_one('score', 'id = '.$id_user);
+				$score++;
+				$this->m_useri->edit_row(array('score' => $score, 'id' => $id_user));
+
+				$likes = $_COOKIE['likes'] ? unserialize($_COOKIE['likes']) : array($id);
+				if(!in_array($id, unserialize($_COOKIE['likes'])))
+				{
+					array_push($likes, $id);
+				}
+				setcookie('likes', serialize($likes), time() + 365*24*3600, '/');
+
+				$this->m_useri->update_title($id_user, $score);
 			}
-			setcookie('likes', serialize($likes), time() + 365*24*3600, '/');
+		}
+		else
+		{
+				$nr = $this->m_recipes->select_one('nr_likes', 'id = '.$id);
+				$nr++;
+				$this->m_recipes->edit_row(array('nr_likes' => $nr, 'id' => $id));
+
+				$id_user = $this->m_recipes->select_one('id_user', 'id = '.$id);
+				$score = $this->m_useri->select_one('score', 'id = '.$id_user);
+				$score++;
+				$this->m_useri->edit_row(array('score' => $score, 'id' => $id_user));
+
+				$likes = $_COOKIE['likes'] ? unserialize($_COOKIE['likes']) : array($id);
+				setcookie('likes', serialize($likes), time() + 365*24*3600, '/');
+
+				$this->m_useri->update_title($id_user, $score);
 		}
 		
 		

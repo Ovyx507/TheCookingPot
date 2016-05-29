@@ -3,8 +3,8 @@
 class Model{
 
 	public $db;
-	private $_req;
-	private $q;
+	public $_req;
+	public $q;
 
 	private $dbg;
 
