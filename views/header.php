@@ -52,7 +52,7 @@
 						{
 							?>
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['email'] ?> <span class="caret"></span></a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['username'] != null ? $_SESSION['username'] : 'ceidintai'?> <span class="caret"></span></a>
 									<ul class="dropdown-menu">
 										<li><a href="<? echo APP_URL_PRE; ?>useri/profile">Profile</a></li>
 										<li role="separator" class="divider"></li>
