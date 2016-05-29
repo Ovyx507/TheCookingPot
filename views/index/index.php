@@ -64,7 +64,7 @@ h1,h3{
 			  <? foreach($vars['rows'] as $k => $recipe) { ?>
 					<div class="item <? echo $k==1 ? 'active' : ''; ?>">
 						<div class="col-md-3 col-sm-6 col-xs-12">
-							<img src="<? echo APP_URL_PRE; ?>uploads/recipes/photo/thumbs/<? echo $recipe['photo']; ?>" alt="Flower" width="50" height="50">
+							<img src="<? echo APP_URL_PRE; ?>uploads/recipes/photo/thumbs/<? echo $recipe['photo']; ?>" alt="Flower" width="400" height="400">
 							<a style="text-decoration:none" href="/thecookingpot/recipes?id=<? echo $recipe['id'] ?>"><div class="carousel-caption">
 								<? echo $recipe['name_u']; ?>
 								<br/>
