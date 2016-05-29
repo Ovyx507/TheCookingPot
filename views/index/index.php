@@ -78,7 +78,6 @@ h1,h3{
 								<h4>
 									<? echo $recipe['name']; ?>
 								</h4>
-								<br/>
 								<? echo $recipe['username'] != null ? $recipe['username'] : $recipe['name_u']; ?>
 							</div></a>
 						</div>
