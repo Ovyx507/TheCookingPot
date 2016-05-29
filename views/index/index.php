@@ -57,6 +57,10 @@ h1,h3{
 	.carousel-inner .prev		 { left: -25%; }	
 }
 
+.carousel-caption {
+	background-color: rgba(0,0,0,55);
+}
+
 </style>
 <div class="container">
 	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000">
