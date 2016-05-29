@@ -64,7 +64,7 @@ h1,h3{
 			  <? foreach($vars['rows'] as $k => $recipe) { ?>
 					<div class="item <? echo $k==1 ? 'active' : ''; ?>">
 						<div class="col-md-3 col-sm-6 col-xs-12">
-							<img src="<? echo APP_URL_PRE; ?>uploads/recipes/photo/thumbs/<? echo $recipe['photo']; ?>" alt="Flower">
+							<img src="<? echo APP_URL_PRE; ?>uploads/recipes/photo/thumbs/<? echo $recipe['photo']; ?>" alt="Flower" width="25%" height="25%">
 							<a style="text-decoration:none" href="/thecookingpot/recipes?id=<? echo $recipe['id'] ?>"><div class="carousel-caption">
 								<? echo $recipe['name_u']; ?>
 								<br/>
@@ -75,10 +75,10 @@ h1,h3{
 			<? } ?>
 		</div>
 
-		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 		</a>
-		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
 			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 		</a>
 
