@@ -22,7 +22,7 @@ class Auth
 		{
 			$_SESSION['loggedin'] = true;
 			$_SESSION['user_id'] = $user_id;
-			$_SESSION['email'] = $email;
+			$_SESSION['username'] = $email;
 		}
 
 		header("Location: ".APP_URL_PRE);
