@@ -11,7 +11,7 @@ require 'utility/H_html.php';
 require 'utility/h_form_bs.php';
 require 'utility/functions.misc.php';
 
-//security against SQLI,XSS,RFI.
+//security against SQLI,XSS,RFI..
 //require 'security/firewall.php';
  
 $protection = array(
