@@ -33,21 +33,44 @@ h1,h3{
     color: rgba(0, 0, 0, 0.5);
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4);
 }
-.carousel-control.left, .carousel-control.right {
-    background-image: none
+.carousel-control 			 { width:  4%; }
+.carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;}
+@media (max-width: 767px) {
+	.carousel-inner .active.left { left: -100%; }
+	.carousel-inner .next        { left:  100%; }
+	.carousel-inner .prev		 { left: -100%; }
+	.active > div { display:none; }
+	.active > div:first-child { display:block; }
+
 }
+@media (min-width: 767px) and (max-width: 992px ) {
+	.carousel-inner .active.left { left: -50%; }
+	.carousel-inner .next        { left:  50%; }
+	.carousel-inner .prev		 { left: -50%; }
+	.active > div { display:none; }
+	.active > div:first-child { display:block; }
+	.active > div:first-child + div { display:block; }
+}
+@media (min-width: 992px ) {
+	.carousel-inner .active.left { left: -25%; }
+	.carousel-inner .next        { left:  25%; }
+	.carousel-inner .prev		 { left: -25%; }	
+}
+
 </style>
 <div class="container">
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-		<div class="carousel-inner " role="listbox">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000">
+		<div class="carousel-inner" role="listbox">
 			  <? foreach($vars['rows'] as $k => $recipe) { ?>
 					<div class="item <? echo $k==1 ? 'active' : ''; ?>">
-						<img src="<? echo APP_URL_PRE; ?>uploads/recipes/photo/thumbs/<? echo $recipe['photo']; ?>" alt="Flower">
-						<a style="text-decoration:none" href="/thecookingpot/recipes?id=<? echo $recipe['id'] ?>"><div class="carousel-caption">
-							<? echo $recipe['name_u']; ?>
-							<br/>
-							<? echo $recipe['name']; ?>
-						</div></a>
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<img src="<? echo APP_URL_PRE; ?>uploads/recipes/photo/thumbs/<? echo $recipe['photo']; ?>" alt="Flower">
+							<a style="text-decoration:none" href="/thecookingpot/recipes?id=<? echo $recipe['id'] ?>"><div class="carousel-caption">
+								<? echo $recipe['name_u']; ?>
+								<br/>
+								<? echo $recipe['name']; ?>
+							</div></a>
+						</div>
 					</div>
 			<? } ?>
 		</div>
@@ -58,5 +81,24 @@ h1,h3{
 		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
 			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 		</a>
+
+		<script> 
+			$('.carousel[data-type="multi"] .item').each(function(){
+  			var next = $(this).next();
+  			if (!next.length) {
+   			 	next = $(this).siblings(':first');
+  			}
+  			next.children(':first-child').clone().appendTo($(this));
+  
+  			for (var i=0;i<2;i++) {
+    			next=next.next();
+    			if (!next.length) {
+    			next = $(this).siblings(':first');
+  			}
+    
+    		next.children(':first-child').clone().appendTo($(this));
+  			}
+			});
+		</script>
 	</div>
 </div>
