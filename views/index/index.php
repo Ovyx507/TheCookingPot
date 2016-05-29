@@ -70,9 +70,11 @@ h1,h3{
 						<div class="col-md-3 col-sm-6 col-xs-12">
 							<img src="<? echo APP_URL_PRE; ?>uploads/recipes/photo/thumbs/<? echo $recipe['photo']; ?>" alt="Flower" width="280" height="280">
 							<a style="text-decoration:none" href="/thecookingpot/recipes?id=<? echo $recipe['id'] ?>"><div class="carousel-caption">
-								<? echo $recipe['name_u']; ?>
+								<h4>
+									<? echo $recipe['name']; ?>
+								</h4>
 								<br/>
-								<? echo $recipe['name']; ?>
+								<? echo $recipe['username'] != null ? $recipe['username'] : $recipe['name_u']; ?>
 							</div></a>
 						</div>
 					</div>
