@@ -62,6 +62,7 @@ h1,h3{
 	right: 0 !important;
 	left: 5.5% !important;
 	bottom: 0 !important;
+	width: 98.3%;
 }
 
 </style>
