@@ -29,7 +29,7 @@ class C_useri extends Controller{
 			}
 			else
 			{
-				$vars['erori'] = "Combinatia nu este corecta!";
+				$vars['erori'] = "Combinatia nu este corecta!!";
 			}
 		}
 		
