@@ -22,12 +22,21 @@
 				<div class ="col-md-4 recipe-buttons">
 					<div class="pull-right">
 						<?
+						if(is_array(unserialize($_COOKIE['likes'])))
+						{
 							if(!in_array($vars['row']['id'], unserialize($_COOKIE['likes'])))
 							{
 						?>
 								<a href="<? echo APP_URL_PRE; ?>recipes/like/<? echo $vars['row']['id']; ?>" class="btn btn-primary" style="margin-right:10px">Like</a>
 						<? 
 							}
+						}
+						else
+						{
+						?>
+							<a href="<? echo APP_URL_PRE; ?>recipes/like/<? echo $vars['row']['id']; ?>" class="btn btn-primary" style="margin-right:10px">Like</a>
+						<?
+						}
 						?>
 						<button type="button" class="btn btn-primary">Comment</button>
 					</div>

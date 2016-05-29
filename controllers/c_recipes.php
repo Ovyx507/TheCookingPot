@@ -78,6 +78,7 @@ class C_recipes extends Controller{
 			if($row)
 			{
 				$vars['row'] = $row;
+				$vars['row']['nr_likes'] = $vars['row']['nr_likes'] ? $vars['row']['nr_likes'] : 0;
 
 				$vars['comments'] = $this->m_recipes_comments->select_all('*', 'id_recipe = '.$row['id']);
 				$this->view->title = $row['name'] . ' - TheCookingPot';
@@ -102,7 +103,10 @@ class C_recipes extends Controller{
 			$this->m_useri->edit_row(array('score' => $score, 'id' => $id_user));
 
 			$likes = $_COOKIE['likes'] ? unserialize($_COOKIE['likes']) : array($id);
-			array_push($likes, array($id));
+			if(!in_array($id, unserialize($_COOKIE['likes'])))
+			{
+				array_push($likes, $id);
+			}
 			setcookie('likes', serialize($likes), time() + 365*24*3600, '/');
 		}
 		
