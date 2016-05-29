@@ -9,51 +9,11 @@ class C_recipes extends Controller{
 	public function add()
 	{	
 		$this->m_useri->is_not_logged();
-		
-		if(!empty($_POST['ingredients']))
-		{
-			preg_match_all("/([\d\.\/]+) (\w+) ([^\d\n]+)/", $_POST['ingredients'], $regex_result);
-
-			for ($i = 0, $size = count($regex_result[0]); $i < $size; ++$i) {
-				$ingredients[] = array(
-					'quantity' => $regex_result[1][$i], 
-					'measure' => $regex_result[2][$i],
-					'name' => $regex_result[3][$i]);
-			}
-
-			$query = $this->m_ingredients->select_all("name, calories, fats, carbohydrates, protein");
-			
-
-			foreach ($ingredients as $index => $ingredient) {
-				
-				foreach($query as $index => $query_ingredient)
-					$distanced_ingredients[] = 
-						array('distance' => levenshtein($ingredient['name'], $query_ingredient['name']),
-							  'ingredient' => $query_ingredient);
-
-				usort($distanced_ingredients, function ($lhs, $rhs) {
-					return $lhs['distance'] < $rhs['distance'] ? -1 : 1;
-				});
-				
-				if ($distanced_ingredients[0]['distance'] < 4)
-					$matched_ingredient_list[] = array(
-						'success' => true,
-						'info' => $distanced_ingredients[0]['ingredient']); 
-				else
-					$matched_ingredient_list[] = array(
-						'success' => false, 
-						'info' => "No match for ".$ingredient['name']); 
-				
-				unset($distanced_ingredients);
-			}
-			wr($matched_ingredient_list);
-			$vars['matched_ingredient_list'] = $matched_ingredient_list;
-		}
-		unset($_POST['ingredients']);
 
 		if(is_array($_POST) && !empty($_POST))
 		{
 			$_POST['id_user'] = $_SESSION['user_id'];
+			$_POST['description'] = $_POST['description'].'<br/>'.$_POST['ingredients'];
 			$id = $this->m_recipes->add($_POST);
 			if($id)
 			{

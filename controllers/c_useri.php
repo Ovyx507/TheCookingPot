@@ -20,9 +20,9 @@ class C_useri extends Controller{
 		{
 			if($id = $this->m_useri->select_one('id', 'email = \''.$_POST['email'].'\' AND password = \''.md5($_POST['password']).'\''))
 			{
-				$email = $this->m_useri->select_one('email','id='.$id);
+				$username = $this->m_useri->select_one('username','id='.$id);
 
-				$this->auth->login($id, $email);
+				$this->auth->login($id, $username);
 
 				header('Location: '.APP_URL_PRE);
 				exit();
@@ -54,6 +54,7 @@ class C_useri extends Controller{
 			if(!$this->m_useri->select_one('id', 'email = \''.$_POST['email'].'\''))
 			{
 				$_POST['password'] = md5($_POST['password']);
+				$_POST['username'] = $_POST['name'].' '.$_POST['prenume'];
 
 				$this->m_useri->add($_POST);
 
