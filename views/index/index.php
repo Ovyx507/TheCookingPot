@@ -59,6 +59,9 @@ h1,h3{
 
 .carousel-caption {
 	background-color: rgba(0,0,0,0.55);
+	right: 0 !important;
+	left: 5.5% !important;
+	bottom: 0 !important;
 }
 
 </style>
