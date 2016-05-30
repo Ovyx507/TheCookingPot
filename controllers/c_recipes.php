@@ -26,6 +26,13 @@ class C_recipes extends Controller{
 		$this->view->render('recipes/add', $vars);
 	}
 
+	public function recipes_list()
+	{
+		$vars['rows'] = $this->m_recipes->select_all('r.*,CONCAT(u.name," ",u.surname) as name_u, u.username as username','1','r left join useri u on r.id_user=u.id');
+		$this->view->title = 'All Recipes - TheCookingPot';
+		$this->view->render('recipes/recipes_list', $vars);
+	}
+
 	public function index()
 	{
 		$is_set = isset($_GET['id']);
