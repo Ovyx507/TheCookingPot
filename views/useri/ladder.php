@@ -14,7 +14,10 @@ display:list-item;
 <div class="ladder">
  <ol class="list-group" type="1">
  <?foreach($vars['useri'] as $user) {?>
-  <li class="list-group-item"><span class="badge"><? echo $user['score'] ?></span><? echo $user['name'] ?></li>
+  <li class="list-group-item">
+	<? echo $user['name'] ?> - <span style="font-weight:bold;"><? echo $user['title'] ? $user['title'] : 'n/a'; ?></span>
+	<span class="badge"><? echo $user['score'] ?></span>
+  </li>
  <?}?>
 </ol>
 </div>

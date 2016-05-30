@@ -10,7 +10,6 @@
 	<br/>
 	<? echo H_form_bs::input_file('photo','', array('title' => 'Photo')); ?>
 	<br/>
-	<input type="submit" class="btn btn-default" value="Match Ingredients">
 	<input type="submit" class="btn btn-default" value="Insert Recipe">
 </form>
 </div>
