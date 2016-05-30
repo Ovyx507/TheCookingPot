@@ -103,6 +103,99 @@ class C_useri extends Controller{
 		$this->view->render('useri/achievements', $vars);
 	}
 
+	public function concurs_start($id)
+	{
+		if($id && $_SESSION['user_id'] != $id)
+		{
+			$id_reteta = $this->m_recipes->select_one('id', '1 ORDER BY RAND()');
+
+			$id_concurs = $this->m_concursuri->add(array('id_user_1' => $_SESSION['user_id'], 'id_user_2' => $id, 'id_recipe' => $id_reteta, 'id_user_won' => 0));
+
+			header('Location: '.APP_URL_PRE.'useri/concurs/'.$id_concurs);
+			exit();
+		}
+
+		header('Location: '.$_SERVER['HTTP_REFERER']);
+		exit();
+	}
+
+	public function concursurile_mele()
+	{
+		$vars['rows'] = $this->m_concursuri->select_all('*', 'id_user_1 = '.$_SESSION['user_id'].' OR id_user_2 = '.$_SESSION['user_id']);
+
+		$this->view->title="Concursurile mele";
+		$this->view->render('useri/concursurile_mele', $vars);
+	}
+
+	public function concursuri()
+	{
+		$vars['rows'] = $this->m_concursuri->select_all('*', 'id_user_won = 0');
+
+		$this->view->title="Concursuri active";
+		$this->view->render('useri/concursuri', $vars);
+	}
+
+	public function concurs($id)
+	{
+		$vars['c'] = $id;
+		$vars['recipe'] = $this->m_concursuri->select_row('r.*, c.date_created c_date','c.id = '.$id, 'c LEFT JOIN recipes r ON r.id = c.id_recipe');
+		$vars['user_1'] = $this->m_concursuri->select_row('u.*, cd.poza, cd.nr_likes, cd.id cd_id','c.id = '.$id, 'c LEFT JOIN useri u ON u.id = c.id_user_1 LEFT JOIN concursuri_dovezi cd ON cd.id_concurs = c.id AND cd.id_user = u.id');
+		$vars['user_2'] = $this->m_concursuri->select_row('u.*, cd.poza, cd.nr_likes, cd.id cd_id','c.id = '.$id, 'c LEFT JOIN useri u ON u.id = c.id_user_2 LEFT JOIN concursuri_dovezi cd ON cd.id_concurs = c.id AND cd.id_user = u.id');
+
+		$this->view->title = 'Concurs';
+		$this->view->render('index/concurs', $vars);
+	}
+
+	public function concurs_dovezi($id)
+	{
+		if(is_array($_POST) && !empty($_POST))
+		{
+			$cd['id_concurs'] = $id;
+			$cd['id_user'] = $_SESSION['user_id'];
+			$cd['nr_likes'] = 0;
+
+			$this->m_concursuri_dovezi->add($cd);
+
+			header('Location: '.$_SERVER['HTTP_REFERER']);
+			exit();
+		}
+	}
+
+	public function concurs_like($id)
+	{
+		if($id)
+		{
+			if($_COOKIE['likes_concurs'])
+			{
+				if(!in_array($id, unserialize($_COOKIE['likes_concurs'])) && $id)
+				{
+					$nr = $this->m_concursuri_dovezi->select_one('nr_likes', 'id = '.$id);
+					$nr++;
+					$this->m_concursuri_dovezi->edit_row(array('nr_likes' => $nr, 'id' => $id));
+
+					$likes = $_COOKIE['likes_concurs'] ? unserialize($_COOKIE['likes_concurs']) : array($id);
+					if(!in_array($id, unserialize($_COOKIE['likes'])))
+					{
+						array_push($likes, $id);
+					}
+					setcookie('likes_concurs', serialize($likes), time() + 365*24*3600, '/');
+				}
+			}
+			else
+			{
+					$nr = $this->m_concursuri_dovezi->select_one('nr_likes', 'id = '.$id);
+					$nr++;
+					$this->m_concursuri_dovezi->edit_row(array('nr_likes' => $nr, 'id' => $id));
+
+					$likes = $_COOKIE['likes_concurs'] ? unserialize($_COOKIE['likes_concurs']) : array($id);
+					setcookie('likes_concurs', serialize($likes), time() + 365*24*3600, '/');
+			}
+		}
+
+		header('Location: '.$_SERVER['HTTP_REFERER']);
+		exit();
+	}
+
 }
 
 

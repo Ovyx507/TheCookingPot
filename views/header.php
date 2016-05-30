@@ -47,6 +47,9 @@
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="<? echo APP_URL_PRE; ?>useri/ladder">Top useri</a></li>
 				</ul>
+				<ul class="nav navbar-nav navbar-left">
+					<li><a href="<? echo APP_URL_PRE; ?>useri/concursuri">Concursuri active</a></li>
+				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 				
@@ -60,6 +63,7 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['username'] != null ? $_SESSION['username'] : 'ceidintai'?> <span class="caret"></span></a>
 									<ul class="dropdown-menu">
 										<li><a href="<? echo APP_URL_PRE; ?>useri/profile">Profile</a></li>
+										<li><a href="<? echo APP_URL_PRE; ?>useri/concursurile_mele">Concursurile mele</a></li>
 										<li role="separator" class="divider"></li>
 										<li><a href="<? echo APP_URL_PRE; ?>useri/logout">Logout</a></li>
 									</ul>
