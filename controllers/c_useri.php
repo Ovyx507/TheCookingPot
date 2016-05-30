@@ -91,16 +91,18 @@ class C_useri extends Controller{
 		$this->view->render('useri/ladder', $vars);
 	}
 
-	public function achievements()
+	public function coupons()
 	{
-		$this->_req->self = 'achievements';
+		$this->_req->self = 'coupons';
 
 		$this->m_useri->is_not_logged();
 		$vars['meniu'] = $this->view->render_contents('useri/meniu');
-		$vars['rows'] = $this->m_useri_achievements->select_all('ua.*, a.name as a_name', 'id_user = '.$_SESSION['user_id'],'ua LEFT JOIN achievements a ON a.id = ua.id_achievement');
+		//$vars['rows'] = $this->m_useri_achievements->select_all('ua.*, a.name as a_name', 'id_user = '.$_SESSION['user_id'],'ua LEFT JOIN achievements a ON a.id = ua.id_achievement');
+		$vars['user'] = $this->m_useri->select_row('u.*, COUNT(ua.id) as nr_achievements', 'u.id = '.$_SESSION['user_id'],'u LEFT JOIN useri_achievements as ua ON ua.id_user = '.$_SESSION['user_id']);
+		$vars['rows'] = $this->m_cupon->select_all('*');
 
-		$this->view->title = 'Achievement';
-		$this->view->render('useri/achievements', $vars);
+		$this->view->title = 'Cupoane';
+		$this->view->render('useri/coupons', $vars);
 	}
 
 	public function concurs_start($id)
