@@ -68,7 +68,9 @@ h1,h3{
 
 </style>
 <div class="container">
-	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000">
+	<div class="row">
+		<div class="col-lg-12">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000">
 		<div class="carousel-inner" role="listbox">
 			  <? foreach($vars['rows'] as $k => $recipe) { ?>
 					<div class="item <? echo $k==1 ? 'active' : ''; ?>">
@@ -110,5 +112,64 @@ h1,h3{
   			}
 			});
 		</script>
+		</div>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4" style="padding-right:20px;border-right:1px solid #ccc;">
+			 <p>
+			 	<h4 style="text-align:center">
+			 		<span class="glyphicon glyphicon-calendar"></span> TOP THIS WEEK
+			 	</h4>
+			 	<?foreach($vars['rows'] as $k => $row) {?>
+  					<li class="list-group-item">
+  						<img src="<? echo APP_URL_PRE; ?>uploads/recipes/photo/micro/<? echo $row['photo']; ?>" alt="Flower">
+						<a style="text-decoration:none" href="/thecookingpot/recipes?id=<? echo $row['id'] ?>"><? echo $row['name']?> - <? echo $row['username'] != null ? $row['username'] : $row['name_u']; ?></a>
+						<div class="recipe-headerfooter">
+						Created at <? echo date("d/m/Y",$row['date_created']) ?>, <? echo $row['nr_likes'] == 1 ? $row['nr_likes'].' person likes this' : $row['nr_likes'].' people like this'; ?> recipe
+						</div>
+  					</li>
+ 				<?}?>
+			 </p>
+		</div>
+		<div class="col-lg-4" style="padding-right:20px;border-right:1px solid #ccc;">
+			 <p>
+			 	<h4 style="text-align:center">
+			 		<span class="glyphicon glyphicon-fire"></span> HOT
+			 	</h4>
+			 	<?foreach($vars['rows'] as $k => $row) {?>
+  					<li class="list-group-item">
+  						<img src="<? echo APP_URL_PRE; ?>uploads/recipes/photo/micro/<? echo $row['photo']; ?>" alt="Flower">
+						<a style="text-decoration:none" href="/thecookingpot/recipes?id=<? echo $row['id'] ?>"><? echo $row['name']?> - <? echo $row['username'] != null ? $row['username'] : $row['name_u']; ?></a>
+						<div class="recipe-headerfooter">
+						Created <? echo $this->_req->m_recipes->time_since(time() - $row['date_created'])?> ago, <? echo $row['nr_likes'] == 1 ? $row['nr_likes'].' person likes this' : $row['nr_likes'].' people like this'; ?> recipe
+						</div>
+  					</li>
+ 				<?}?>
+			 </p>
+		</div>
+		<div class="col-lg-4">
+			 <p>
+			 	<h4 style="text-align:center">
+			 		<span class="glyphicon glyphicon-cutlery"></span> BEST POTTERS
+			 	</h4>
+			 	<ol class="list-group" type="1">
+					 <?foreach($vars['useri'] as $user) {?>
+ 						<li class="list-group-item">
+						<? echo $user['name'] ?> - <span style="font-weight:bold;"><? echo $user['title'] ? $user['title'] : 'n/a'; ?></span>
+						<span class="badge"><? echo $user['score'] ?></span>
+						<? 
+						if($user['id'] != $_SESSION['user_id'] && $_SESSION['loggedin'])
+						{
+							?>		
+							<a href="<? echo APP_URL_PRE; ?>useri/concurs_start/<? echo $user['id']; ?>" style="float:right;margin-right:15px;text-decoration:none;cursor:pointer;" class="glyphicon glyphicon-screenshot"></a>
+							<? 
+						}
+						?>
+  						</li>
+					<?}?>
+				</ol>
+			 </p>
+		</div>
 	</div>
 </div>
