@@ -76,6 +76,8 @@ class C_useri extends Controller{
 		$vars['info'] = null;
 		$vars['meniu'] = $this->view->render_contents('useri/meniu');
 
+		$vars['row'] = $this->m_useri->select_row('*', 'id = '.$_SESSION['user_id']);
+
 		$this->m_useri->is_not_logged();
 		$this->view->title = 'Profile';
 		$this->view->render('useri/profile', $vars);
