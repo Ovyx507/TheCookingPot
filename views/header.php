@@ -26,7 +26,7 @@
 								?>
 								<li><a href="<? echo APP_URL_PRE; ?>recipes/add">Adauga reteta</a></li>
 							<? } ?>
-								<li><a href="<? echo APP_URL_PRE; ?>index">Vezi retete</a></li>
+								<li><a href="<? echo APP_URL_PRE; ?>recipes/recipes_list">Vezi retete</a></li>
 						</ul>
 					</li>
 				</ul>
