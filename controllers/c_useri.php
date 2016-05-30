@@ -84,7 +84,7 @@ class C_useri extends Controller{
 	
 	public function ladder()
 	{
-		$vars['useri'] = $this->m_useri->selectCol('id,name,score','1 ORDER BY score DESC');
+		$vars['useri'] = $this->m_useri->selectCol('*','1 ORDER BY score DESC');
 		$this->view->title = 'Ladder';
 		$this->view->render('useri/ladder', $vars);
 	}

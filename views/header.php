@@ -44,6 +44,9 @@
 						</ul>
 					</li>
 				</ul>
+				<ul class="nav navbar-nav navbar-left">
+					<li><a href="<? echo APP_URL_PRE; ?>useri/ladder">Top useri</a></li>
+				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 				
