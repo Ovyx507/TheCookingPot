@@ -76,6 +76,7 @@ class C_useri extends Controller{
 		$vars['info'] = null;
 		$vars['meniu'] = $this->view->render_contents('useri/meniu');
 
+		$vars['row'] = $this->m_useri->select_row('u.*, COUNT(ua.id) as nr_achievements', 'u.id = '.$_SESSION['user_id'],'u LEFT JOIN useri_achievements as ua ON ua.id_user = '.$_SESSION['user_id']);
 
 		$this->m_useri->is_not_logged();
 		$this->view->title = 'Profile';
